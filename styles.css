@@ -118,10 +118,43 @@ body.nav-open .main-nav a{color:#333}
   html{font-size:15px}
   .hero-image{max-width:100%;height:auto}
   .hero-grid{padding:20px}
-  .nav-open .main-nav ul{right:8px;left:8px}
+  body.nav-open .main-nav ul{right:8px;left:8px}
 }
 @media (max-width:360px){
   html{font-size:14px}
+}
+
+/* Phone-specific refinements for common device widths */
+@media (max-width:430px){
+  .hero-title{font-size:clamp(1.6rem,6.2vw,2.2rem)}
+  .hero-sub{font-size:14px}
+  .btn{padding:10px 14px;font-size:14px}
+  .hero-image{max-width:260px}
+  .about-content .about-title{font-size:24px}
+  .benefit-grid{grid-template-columns:repeat(2,1fr)}
+  .member-photo{width:120px;height:120px}
+  .news-img{height:140px}
+}
+
+@media (max-width:412px){
+  .hero-title{font-size:1.9rem}
+  .hero-grid{gap:10px}
+  .hero-image{max-width:220px}
+  .about-image{max-width:320px}
+  .enroll-image{max-width:220px}
+  body.nav-open .main-nav ul{left:10px;right:10px;top:56px}
+  .main-nav ul{gap:12px}
+}
+
+@media (max-width:360px){
+  .hero-title{font-size:1.7rem}
+  .hero-sub{font-size:13px}
+  .site-header{padding:8px 0}
+  .btn{padding:8px 12px}
+  .member-photo{width:110px;height:110px}
+  .benefits-title{font-size:22px}
+  .news-img{height:120px}
+  .footer-grid{grid-template-columns:1fr}
 }
 
 /* Activities */
