@@ -120,6 +120,19 @@ body.nav-open .main-nav a{color:#333}
   .hero-grid{padding:20px}
   body.nav-open .main-nav ul{right:8px;left:8px}
 }
+
+/* Ensure hero and about become single-column and center on small phones */
+@media (max-width:480px){
+  .hero-grid{grid-template-columns:1fr !important;align-items:center;gap:14px}
+  .hero-left{text-align:center}
+  .hero-right{justify-self:center}
+  .hero-image{max-width:280px}
+
+  .about-grid{grid-template-columns:1fr !important;align-items:center;gap:14px}
+  .about-image{max-width:320px;margin:0 auto}
+  .about-content{text-align:center}
+  .about-contacts{justify-content:center}
+}
 @media (max-width:360px){
   html{font-size:14px}
 }
