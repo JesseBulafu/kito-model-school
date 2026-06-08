@@ -132,4 +132,26 @@ document.addEventListener('DOMContentLoaded',function(){
     // remove the original global container
     globalDecor.parentNode && globalDecor.parentNode.removeChild(globalDecor);
   })();
+
+  // About section background carousel (cross-fade)
+  (function initAboutCarousel(){
+    const aboutBg = document.querySelector('.about-bg');
+    if(!aboutBg) return;
+    const slides = Array.from(aboutBg.querySelectorAll('img'));
+    if(slides.length === 0) return;
+    let idx = 0;
+    // ensure initial state
+    slides.forEach((s,i)=>{
+      s.classList.remove('visible');
+      s.style.transition = 'opacity 1s ease-in-out, transform 8s linear';
+    });
+    slides[0].classList.add('visible');
+    // cycle
+    const interval = 5000;
+    setInterval(()=>{
+      slides[idx].classList.remove('visible');
+      idx = (idx + 1) % slides.length;
+      slides[idx].classList.add('visible');
+    }, interval);
+  })();
 });
