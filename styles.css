@@ -8,6 +8,10 @@
 body{font-family:Inter,system-ui,Segoe UI,Arial;line-height:1.4;margin:0;background:linear-gradient(180deg,var(--bg) 0%, #fff 70%);color:#222}
 .container{max-width:1200px;margin:0 auto;padding:0 20px}
 
+/* Prevent horizontal overflow and ensure full-width containers on very small screens */
+html,body{width:100%;overflow-x:hidden}
+
+
 /* Fluid typography */
 html { font-size: 16px; }
 @media (min-width: 1200px){ html { font-size: 18px; } }
@@ -75,6 +79,39 @@ body.nav-open .main-nav a{color:#333}
   .about-grid{grid-template-columns:1fr;gap:18px}
   .about-image{max-width:420px;margin:0 auto}
   .about-content .about-title{font-size:32px}
+}
+
+/* About section background carousel */
+.about{position:relative;overflow:hidden}
+.about-bg{position:absolute;inset:0;z-index:0;pointer-events:none}
+.about-bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1s ease-in-out,transform 10s linear;transform:scale(1.04)}
+.about-bg img.visible{opacity:1;transform:scale(1)}
+.about-bg-overlay{position:absolute;inset:0;background:rgba(0,0,0,0.36);mix-blend-mode:multiply}
+.about .container{position:relative;z-index:2}
+
+/* Reduce image prominence on small screens */
+@media (max-width:640px){
+  .about-bg-overlay{background:rgba(0,0,0,0.5)}
+}
+
+/* Ensure about section text is readable on top of background images */
+.about .eyebrow,
+.about .about-title,
+.about .about-sub,
+.about .features li,
+.about .quote,
+.about .about-contacts .small,
+.about .about-contacts .muted{
+  color: #fff !important;
+}
+.about .about-title{color:#fff !important}
+.about .quote{border-left-color:rgba(255,255,255,0.22);color:rgba(255,255,255,0.95)}
+.about .features li{background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.95)}
+.about a{color:#fff}
+.about .btn-primary,.about .btn-secondary{color:#fff}
+
+@media (max-width:420px){
+  .about-bg img{transform:scale(1.08)}
 }
 
 /* Benefits */
@@ -149,6 +186,32 @@ body.nav-open .main-nav a{color:#333}
   .news-img{height:140px}
 }
 
+/* Tighter scaling for very small screens to avoid clipping */
+@media (max-width:430px){
+  .hero-title{font-size:clamp(1.3rem,5.5vw,1.9rem);line-height:1.02}
+  .hero-left{max-width:360px;margin:0 auto;padding:0 6px}
+  .hero-sub{font-size:13px;line-height:1.35;max-width:320px;margin:0 auto}
+
+  .benefits-title{font-size:20px}
+  .benefit-grid{gap:10px}
+  .benefit-item{padding:10px;border-radius:12px}
+  .icon{width:64px;height:64px;font-size:22px}
+  .label{font-size:14px}
+
+  .subject-item{padding:8px}
+  .subject-icon{width:44px;height:44px}
+  .subject-text h4{font-size:15px}
+  .subject-text p{font-size:13px}
+}
+
+@media (max-width:360px){
+  .hero-title{font-size:1.5rem}
+  .hero-sub{font-size:12.5px}
+  .benefit-item{padding:8px}
+  .icon{width:56px;height:56px;font-size:20px}
+  .label{font-size:13px}
+}
+
 @media (max-width:412px){
   .hero-title{font-size:1.9rem}
   .hero-grid{gap:10px}
@@ -168,6 +231,67 @@ body.nav-open .main-nav a{color:#333}
   .benefits-title{font-size:22px}
   .news-img{height:120px}
   .footer-grid{grid-template-columns:1fr}
+}
+
+/* Ensure content centers and fills viewport on narrow phones */
+@media (max-width:440px){
+  .container{padding-left:16px;padding-right:16px;max-width:100%}
+  .hero-grid, .about-grid{justify-items:center;align-items:center}
+  .hero-left, .about-content{width:100%}
+  .hero-right, .about-image-wrap{width:100%;display:flex;justify-content:center}
+  .hero-image{display:block;margin:0 auto;width:100%;max-width:300px}
+  .about-image{width:100%;max-width:360px}
+}
+
+/* Ensure benefit and subject grids fill and center on narrow phones */
+@media (max-width:480px){
+  .benefit-grid, .subject-grid, .news-grid{justify-items:center;justify-content:center;grid-auto-flow:row}
+  .benefit-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .subject-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .benefit-item, .subject-item{width:100%;max-width:360px;box-sizing:border-box}
+  .benefit-item{padding:14px}
+}
+
+@media (max-width:360px){
+  .benefit-grid, .subject-grid{grid-template-columns:1fr}
+  .benefit-item, .subject-item{max-width:100%}
+}
+
+/* Activities: stack and center content on narrow phones */
+@media (max-width:440px){
+  .activities-grid{grid-template-columns:1fr !important;gap:16px;align-items:center}
+  .activities-image, .activities-content{width:100%}
+  .activities-img{max-width:360px;width:100%;height:auto;display:block;margin:0 auto;border-radius:18px}
+  .activities-title{font-size:1.6rem;text-align:center}
+  .activities-sub{text-align:center}
+  .subject-grid{grid-template-columns:1fr;gap:12px}
+  .subject-item{width:100%;padding:10px}
+  .subject-icon{width:48px;height:48px;font-size:20px}
+  .subject-text h4{font-size:16px}
+  .subject-text p{font-size:13px}
+}
+
+/* Force vertical card layout and center content on very small phones to avoid horizontal overflow */
+@media (max-width:420px){
+  .subject-grid{display:grid;grid-template-columns:1fr;gap:12px}
+  .subject-item{display:flex;flex-direction:column;align-items:center;text-align:center;padding:12px}
+  .subject-icon{width:56px;height:56px;margin-bottom:10px}
+  .subject-text h4{font-size:15px;margin-bottom:6px}
+  .subject-text p{font-size:13px}
+  .activities-img{max-width:320px}
+  .activities-title{font-size:1.5rem}
+}
+
+@media (max-width:360px){
+  .subject-icon{width:48px;height:48px}
+  .subject-text h4{font-size:14px}
+  .activities-title{font-size:1.3rem}
+}
+
+@media (max-width:360px){
+  .activities-img{max-width:300px}
+  .activities-title{font-size:1.4rem}
+  .subject-icon{width:44px;height:44px}
 }
 
 /* Activities */
